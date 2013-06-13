@@ -12,7 +12,9 @@
 				type="checkbox"
 				name="link[sub_ids][]"
 				value="<%= sub.id %>"
-				<%= checked if sub == @default_sub %>
+				<%=
+				"checked" if sub.id == @default_sub_id
+				%>
 			>
 		</li>
 	<% end %>

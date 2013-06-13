@@ -7,7 +7,12 @@ class SubsController < ApplicationController
   end
 
   def show
-    @sub = Sub.find(params[:id])
+    @sub = Sub.includes(:links).find(params[:id])
+    if @sub.links
+      @links = @sub.links.sort do |l1, l2|
+        l2.popularity <=> l1.popularity
+      end
+    end
   end
 
   def create

@@ -1,17 +1,18 @@
 <h1><%= @sub.name %></h1>
 
-<ul>
-	<% @sub.links.each do |link| %>
+<ol>
+	<% @links.each do |link| %>
 	<li>
 		<ul>
 			<li><%= link.title %></li>
 			<li><%= link.body %></li>
 			<li><%= link.url %></li>
+			<li>Popularity: <%= link.popularity %></li>
 		</ul>
 		<br>
 	</li>
 	<% end %>
-</ul>
+</ol>
 
 <form action="<%= new_link_url %>" method="POST">
 	<input type="hidden" name="_method" value="GET">

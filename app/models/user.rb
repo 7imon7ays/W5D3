@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   has_many :comments, foreign_key: :author_id
   has_many :links, foreign_key: :uploader_id
 
+  has_many :votes, class_name: UserVote, foreign_key: :voter_id
+
+  accepts_nested_attributes_for :votes
+
   def password=(password)
     self.password_digest = BCrypt::Password.create(password)
   end

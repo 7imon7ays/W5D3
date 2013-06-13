@@ -1,5 +1,9 @@
+<%= flash[:errors] %>
+
 <h1><%= @link.title %></h1>
 <h4><%= @link.url %></h4>
+Popularity:
+<%= @link.popularity %>
 <p><%= @link.body %></p>
 
 <form action="<%= comments_url %>" method="POST">
@@ -9,6 +13,17 @@
 		<input type="submit" value="Reply">
 </form>
 
+<form action="<%= link_upvote_url(@link) %>" method="POST" >
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type=hidden name="votes_attributes[upvote]" value="<%= true %>">
+	<input type="submit" value="Upvote">
+</form>
+
+<form action="<%= link_downvote_url(@link) %>" method="POST" >
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type=hidden name="votes_attributes[upvote]" value="<%= false %>">
+	<input type="submit" value="Downvote">
+</form>
 
 <ul>
 	<li>

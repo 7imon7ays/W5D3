@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
 
   def check_login
     @user = User.find_by_token(session[:token])
-    p "USER PUHEFIOUSDHJPFOISDJ"
-    p @user
     redirect_to new_session_url if @user.nil?
   end
 

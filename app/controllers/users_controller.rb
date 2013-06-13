@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :check_login, except: [:create]
+  before_filter :check_login, except: [:new, :create]
 
   def new
     @user = User.new

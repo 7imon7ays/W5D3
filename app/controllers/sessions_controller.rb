@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
       session[:token] = @user.reset_session_token!
       redirect_to user_url(@user)
     else
+      flash[:errors] ||= "invalid password"
       render :new
     end
   end
