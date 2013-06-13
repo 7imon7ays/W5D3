@@ -1,0 +1,24 @@
+<%= comment.body %>
+
+<form action="<%= comments_url %>" method="POST">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input id="comment_body" type="text" name="comment[body]">
+		<input type="hidden" name="comment[parent_id]" value="<%= comment.id %>">
+		<input type="hidden" name="comment[link_id]" value="<%= comment.link.id %>">
+		<input type="submit" value="Reply">
+</form>
+
+
+
+<% children = comments.select { |cmt| cmt.parent_id == comment.id } %>
+
+<% unless children.empty? %>
+	<% children.each do |child| %>
+	<ul>
+		<li>
+			<%= render partial: "comment",
+				locals: { comment: child, comments: comments } %>
+		</li>
+	</ul>
+	<% end %>
+<% end %>

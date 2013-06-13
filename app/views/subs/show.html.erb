@@ -1,0 +1,20 @@
+<h1><%= @sub.name %></h1>
+
+<ul>
+	<% @sub.links.each do |link| %>
+	<li>
+		<ul>
+			<li><%= link.title %></li>
+			<li><%= link.body %></li>
+			<li><%= link.url %></li>
+		</ul>
+		<br>
+	</li>
+	<% end %>
+</ul>
+
+<form action="<%= new_link_url %>" method="POST">
+	<input type="hidden" name="_method" value="GET">
+	<input type="hidden" name="sub[id]" value="<%= @sub.id %>">
+	<input type="submit" value="Contribute a Link">
+</form>

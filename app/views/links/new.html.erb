@@ -1,0 +1,41 @@
+<h1>Contribute a Link</h1>
+<form action="<%= links_url %>" method="POST">
+
+	<input type="hidden" name="authenticity_token" value="<% form_authenticity_token %>">
+
+
+	Which subs should it appear on?
+	<% @subs.each do |sub| %>
+		<li>
+			<label for="sub_id"><%= sub.name %></label>
+			<input id="sub_id"
+				type="checkbox"
+				name="link[sub_ids][]"
+				value="<%= sub.id %>"
+				<%= checked if sub == @default_sub %>
+			>
+		</li>
+	<% end %>
+
+	<label for="link_title">Title</label>
+	<input id="link_title" type="text" name="link[title]" value="<%= @link.title %>">
+
+	<br>
+
+	<label for="link_url">URL</label>
+	<input id="url_title" type="text" name="link[url]" value="<%= @link.url %>">
+
+	<br>
+
+	<label for="link_body">Body</label>
+	<textarea id="link_body" name="link[body]"><%= @link.body %></textarea>
+
+	<br>
+
+	<label for="link_comment_id">Post a comment</label>
+	<input type="text" id="link_comment_id" name="link[comments_attributes][0][body]">
+
+	<br>
+
+	<input type="submit" value="Upload Link">
+</form>

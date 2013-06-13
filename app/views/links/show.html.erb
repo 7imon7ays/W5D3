@@ -1,0 +1,20 @@
+<h1><%= @link.title %></h1>
+<h4><%= @link.url %></h4>
+<p><%= @link.body %></p>
+
+<form action="<%= comments_url %>" method="POST">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input id="comment_body" type="text" name="comment[body]">
+		<input type="hidden" name="comment[link_id]" value="<%= @link.id %>">
+		<input type="submit" value="Reply">
+</form>
+
+
+<ul>
+	<li>
+		<% @root_comments.each do |root_comment| %>
+		<%= render partial: "comment", locals: { comment: root_comment,
+				comments: @comments } %>
+		<% end %>
+	</li>
+</ul>

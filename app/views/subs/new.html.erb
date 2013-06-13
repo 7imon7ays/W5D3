@@ -1,0 +1,67 @@
+<h1>New Sub</h1>
+<form action="<%= subs_url %>" method="POST">
+
+	<input type="hidden"
+		name="authenticity_token"
+		value="<%= form_authenticity_token %>"
+	>
+
+	<label for="sub_name">Name</label>
+	<input
+		id="sub_name" type="text"
+		name="sub[name]"
+		value="<%= @sub.name %>"
+	>
+	<br>
+	<ol>
+	<% 5.times do |i| %>
+	<li>
+		<ul>
+			<li>
+			<label for="sub_link_<%= i %>_title">Link <%= i %> Title</label>
+			<input
+				id="sub_link_<%= i %>_title"
+				type="text"
+				name="sub[links_attributes][<%= i %>][title]"
+				value="<%= @sub.links[i].title unless @sub.links[i].nil? %>"
+			>
+			</li>
+
+			<li>
+			<label for="sub_link_<%= i %>_url">Link <%= i %> URL</label>
+			<input
+				id="sub_link_<%= i %>_url"
+				type="text"
+				name="sub[links_attributes][<%= i %>][url]"
+				value="<%= @sub.links[i].url unless @sub.links[i].nil? %>"
+			>
+			</li>
+
+			<li>
+			<label for="sub_link_<%= i %>_body">Link <%= i %> Body</label>
+			<textarea
+				id="sub_link_<%= i %>_body"
+				name="sub[links_attributes][<%= i %>][body]"
+			>
+			<%= @sub.links[i].body unless @sub.links[i].nil? %>
+			</textarea>
+			</li>
+
+			<li>
+			<label for="sub_link_<%= i %>_body">Link <%= i %> Body</label>
+			<textarea
+				id="sub_link_<%= i %>_body"
+				name="sub[links_attributes][<%= i %>][body]"
+			>
+			<%= @sub.links[i].body unless @sub.links[i].nil? %>
+			</textarea>
+			</li>
+
+		</ul>
+	</li>
+	<br>
+		<% end %>
+	</ol>
+	<br>
+	<input type="submit" value="Create Sub">
+</form>
